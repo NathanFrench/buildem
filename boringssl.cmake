@@ -21,21 +21,25 @@ ExternalProject_Add(  ${boringssl_NAME}
             -DCMAKE_INSTALL_PREFIX:PATH=${BUILDEM_DIR}
 
         BUILD_COMMAND     ${BUILDEM_ENV_STRING} $(MAKE)
-        INSTALL_COMMAND ""
+        INSTALL_COMMAND ${CMAKE_COMMAND} -E copy_directory
+            ${boringssl_SRC_DIR}/include ${BUILDEM_INCLUDE_DIR} 
 )
 
 ExternalProject_add_step(${boringssl_NAME} install_static_library_1
+    DEPENDEES install
     COMMAND ${CMAKE_COMMAND} -E copy ${boringssl_SRC_DIR}/ssl/libssl.a
         ${BUILDEM_LIB_DIR}/ssl/libssl.a
         COMMENT "install libssl.a"
 )
 
 ExternalProject_add_step(${boringssl_NAME} install_static_library_2
+    DEPENDEES install_static_library_1
     COMMAND ${CMAKE_COMMAND} -E copy ${boringssl_SRC_DIR}/decrepit/libdecrepit.a 
         ${BUILDEM_LIB_DIR}/decrepit/libdecrepit.a 
 )
 
 ExternalProject_add_step(${boringssl_NAME} install_static_library_3
+    DEPENDEES install_static_library_2
     COMMAND ${CMAKE_COMMAND} -E copy ${boringssl_SRC_DIR}/crypto/libcrypto.a
         ${BUILDEM_LIB_DIR}/crypto/libcrypto.a
 )
