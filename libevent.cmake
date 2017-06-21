@@ -13,7 +13,7 @@ ExternalProject_Add(  ${libevent_NAME}
         PREFIX            ${BUILDEM_DIR}
         GIT_REPOSITORY    ${libevent_URL}
         GIT_TAG           ${libevent_TAG}
-        UPDATE_COMMAND    ${LIBEVENT_UPDATE_COMMAND}
+        UPDATE_COMMAND    "" 
         PATCH_COMMAND     "./autogen.sh"
         CONFIGURE_COMMAND ${BUILDEM_ENV_STR}
             ./configure
