@@ -16,7 +16,7 @@ ExternalProject_Add(  ${http_parser_NAME}
         PATCH_COMMAND     ""
         BUILD_IN_SOURCE   1
         CONFIGURE_COMMAND ""
-        BUILD_COMMAND     ${BUILDEM_ENV_STRING} make
+        BUILD_COMMAND     ${BUILDEM_ENV_STRING} make package
         INSTALL_COMMAND
            ${CMAKE_COMMAND} -E copy
            ${http_parser_SRC_DIR}/libhttp_parser.a ${BUILDEM_LIB_DIR};
