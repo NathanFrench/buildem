@@ -1,6 +1,3 @@
-set (LIBEVENT_UPDATE_COMMAND git checkout master && git pull)
-
-
 include (ExternalProject)
 include (ExternalSource)
 include (BuildSupport)
