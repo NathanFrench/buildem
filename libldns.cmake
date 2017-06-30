@@ -16,7 +16,7 @@ ExternalProject_Add( ${libldns_NAME}
     UPDATE_COMMAND ""
     PATCH_COMMAND libtoolize -c --install && autoreconf --install
     CONFIGURE_COMMAND ${BUILDEM_ENV_STR} ./configure --enable-shared --disable-static
-    --prefix=${TSAUDITD_DEPS_INSTALL} --disable-dependency-tracking
+    --prefix=${BUILDEM_DIR} --disable-dependency-tracking
     --disable-ldns-config --disable-sha2 --disable-gost --disable-ecdsa
     --disable-dane --enable-draft-rrtypes --without-pyldnsx
     BUILD_COMMAND ${BUILDEM_ENV_STRING} $(MAKE)
