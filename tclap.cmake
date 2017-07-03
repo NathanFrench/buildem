@@ -12,10 +12,10 @@ externalproject_add (${tclap_NAME}
     GIT_TAG           ${tclap_TAG}
     UPDATE_COMMAND    ""
     BUILD_IN_SOURCE   1
-    PATCH_COMMAND     "./autotools.sh; mkdir ${tclap_SRC_DIR}/docs/html"
-    CONFIGURE_COMMAND "${BUILDEM_ENV_STR} ./configure --prefix=${BUILDEM_DIR}"
-    BUILD_COMMAND     "${BULDEM_ENV_STRING} $(MAKE)"
-    INSTALL_COMMAND   "${BUILDEM_ENV_STRING} $(MAKE) install"
+    PATCH_COMMAND     ./autotools.sh && mkdir ${tclap_SRC_DIR}/docs/html
+    CONFIGURE_COMMAND ${BUILDEM_ENV_STR} ${tclap_SRC_DIR}/configure --prefix=${BUILDEM_DIR}
+    BUILD_COMMAND     ${BULDEM_ENV_STRING} make 
+    INSTALL_COMMAND   ${BUILDEM_ENV_STRING} make install
 )
 
 
