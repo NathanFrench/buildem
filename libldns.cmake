@@ -1,20 +1,22 @@
-#https://github.com/NLnetLabs/ldns.git
-
 include (ExternalProject)
 include (ExternalSource)
 include (BuildSupport)
+
+if (NOT libldns_NAME)
 
 external_git_repo (libldns
     master
     https://github.com/NLnetLabs/ldns)
 
 
-ExternalProject_Add( ${libldns_NAME}
-    PREFIX ${BUILDEM_DIR}
-    GIT_REPOSITORY ${libldns_URL}
-    GIT_TAG ${libldns_TAG}
-    UPDATE_COMMAND ""
-    PATCH_COMMAND  libtoolize -c --install && autoreconf --install 
+ExternalProject_Add(${libldns_NAME}
+    PREFIX          ${BUILDEM_DIR}
+    GIT_REPOSITORY  ${libldns_URL}
+    GIT_TAG         ${libldns_TAG}
+    UPDATE_COMMAND  ""
+    BUILD_IN_SOURCE 1
+    TEST_COMMAND    ""
+    PATCH_COMMAND   libtoolize -c --install && autoreconf --install 
     CONFIGURE_COMMAND ${BUILDEM_ENV_STR} ${libldns_SRC_DIR}/configure
         --enable-static
         --disable-shared
@@ -27,12 +29,8 @@ ExternalProject_Add( ${libldns_NAME}
         --disable-dane
         --enable-draft-rrtypes
         --without-pyldnsx
-    BUILD_COMMAND ${BUILDEM_ENV_STRING} $(MAKE)
-    TEST_COMMAND ""
-    INSTALL_COMMAND ${BUILDEM_ENV_STRING} $(MAKE) install
-    BUILD_IN_SOURCE 1
+    INSTALL_COMMAND ${BUILDEM_ENV_STRING} make install 
+    BUILD_COMMAND   ${BUILDEM_ENV_STRING} make 
 )
 
-
-
-
+endif()
