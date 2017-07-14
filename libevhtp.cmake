@@ -6,7 +6,7 @@ if (NOT libevhtp_NAME)
 
 external_git_repo (libevhtp
     HEAD
-    http://www.github.com/libevhtp/libevhtp)
+    https://github.com/criticalstack/libevhtp) 
 
 ExternalProject_Add(${libevhtp_NAME}
         PREFIX            ${BUILDEM_DIR}
